@@ -65,9 +65,10 @@ function getUploadObj(media_url, filename, date, description, source) {
 }
 
 async function extractIdAndUpload(line) {
+  let collectionID;
   try {
     const [colID, source, ...rest] = line.split(",");
-    const collectionID = stripBOM(colID);
+    collectionID = stripBOM(colID);
     const RijksAPIURL = `${API}${collectionID}${params}`;
     const rijksAPIresult = await fetch(RijksAPIURL);
     const jsonRijksAPIresult = await rijksAPIresult.json();
@@ -87,8 +88,7 @@ async function extractIdAndUpload(line) {
     const title = getTitle(artObject, collectionID);
     const date = getDate(artObject?.dating);
     const media = await fetch(media_url);
-    const media_blob = await media.blob();
-    const fileExt = "." + media_blob?.type.split("/")[1];
+    const fileExt = '.' + media.headers?.get('content-type')?.split('/')[1];
     if (!fileExt) {
       const content = `${collectionID},MISSING EXT\n`;
       throw new Error(content);
@@ -114,7 +114,7 @@ async function extractIdAndUpload(line) {
     await appendFile(statusFile, content);
   } catch (err) {
     const errStr = err.toString();
-    let content = errStr;
+    let content = `${collectionID},${errStr}`;
     if(!content.endsWith('\n')) content+="\n";
     await appendFile(errFile, content);
   }

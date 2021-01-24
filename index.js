@@ -10,10 +10,7 @@ async function main() {
     const errStr = err.toString();
     const content = errStr + "\n";
     await appendFile(errFile, content);
-  } finally {
-    const content = `ALL,DONE\n`;
-    await appendFile(statusFile, content);
-  }
+  } 
 }
 
 main();
