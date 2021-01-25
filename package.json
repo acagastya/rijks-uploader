@@ -3,5 +3,27 @@
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.1",
     "wikiapi": "^1.14.0"
-  }
+  },
+  "author": {
+    "email": "me@hanabi.in",
+    "name": "Agastya",
+    "url": "https://hanabi.in"
+  },
+  "bugs": {
+    "email": "me@hanabi.in",
+    "url": "https://github.com/acagastya/rijks-uploader/issues/new"
+  },
+  "description": "Upload Public Domain files from Rijksmuseum.nl to Wikimedia Commons.",
+  "engines": {
+    "node": "10.0.0"
+  },
+  "keywords": ["Public Domain", "Rijksmuseum", "Wikimedia Commons"],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "name": "rijks-uploader",
+  "private": true,
+  "repository": {
+    "url": "https://git.hanabi.in/acagastya/rijks-uploader"
+  },
+  "version": "0.0.1"
 }
